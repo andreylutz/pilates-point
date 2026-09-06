@@ -7,8 +7,8 @@ import trainer1 from '../../images/DSC_2067.jpg'
 import trainer2 from '../../images/liza-trainer.jpg'
 import trainer3 from '../../images/katerina-trainer.jpg'
 import trainer4 from '../../images/DSC_2098.jpg'
+import logo from '../../images/IMG_8222-mark.png'
 import footerDecor from './images/footer-decor.jpg'
-import logo from './images/logo.png'
 
 export const images = {
   logo,

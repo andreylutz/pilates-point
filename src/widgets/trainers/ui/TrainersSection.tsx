@@ -1,12 +1,29 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { trainers } from '@/entities/trainer'
 
 export default function TrainersSection() {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const movingRef = useRef(false)
   const [selectedTrainer, setSelectedTrainer] = useState<(typeof trainers)[number] | null>(null)
-  const loopedTrainers = [...trainers, ...trainers]
+  const [startIndex, setStartIndex] = useState(0)
+  const [moveDirection, setMoveDirection] = useState<-1 | 0 | 1>(0)
+  const [slideOffset, setSlideOffset] = useState(0)
+  const loopedTrainers = Array.from({ length: trainers.length + 2 }, (_, index) => {
+    const itemIndex = (startIndex + index - 1 + trainers.length) % trainers.length
+    return trainers[itemIndex]
+  })
+
+  const moveCarousel = useCallback((direction: -1 | 1) => {
+    if (movingRef.current) {
+      return
+    }
+
+    movingRef.current = true
+    setMoveDirection(direction)
+  }, [])
 
   useEffect(() => {
     if (!selectedTrainer) {
@@ -28,8 +45,42 @@ export default function TrainersSection() {
     }
   }, [selectedTrainer])
 
+  useEffect(() => {
+    const updateSlideOffset = () => {
+      const track = trackRef.current
+      const firstCard = track?.querySelector<HTMLElement>('.trainer-card')
+
+      if (!track || !firstCard) {
+        return
+      }
+
+      const styles = window.getComputedStyle(track)
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || '0')
+      setSlideOffset(firstCard.offsetWidth + gap)
+    }
+
+    updateSlideOffset()
+    window.addEventListener('resize', updateSlideOffset)
+
+    return () => window.removeEventListener('resize', updateSlideOffset)
+  }, [])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      moveCarousel(1)
+    }, 5600)
+
+    return () => window.clearInterval(timer)
+  }, [moveCarousel])
+
+  const normalizeLoop = () => {
+    setStartIndex((index) => (index + moveDirection + trainers.length) % trainers.length)
+    setMoveDirection(0)
+    movingRef.current = false
+  }
+
   return (
-    <section id="trainers" className="surface-section section-pad marquee-section">
+    <section id="trainers" className="surface-section section-pad carousel-section">
       <div className="container">
         <div className="section-head">
           <div>
@@ -47,21 +98,40 @@ export default function TrainersSection() {
           </div>
         </div>
 
-        <div className="marquee-window">
-          <div className="marquee-track trainer-grid reverse-marquee">
-            {loopedTrainers.map((trainer, index) => (
-              <article key={`${trainer.name}-${index}`} className="trainer-card">
-                <Image src={trainer.img} alt={trainer.name} sizes="(max-width: 620px) 78vw, (max-width: 950px) 44vw, 28vw" />
-                <div>
-                  <h3>{trainer.name}</h3>
-                  <p>{trainer.role}</p>
-                  <button type="button" onClick={() => setSelectedTrainer(trainer)}>
-                    Подробнее
-                  </button>
-                </div>
-              </article>
-            ))}
+        <div className="edge-carousel">
+          <button className="edge-carousel-button prev" type="button" aria-label="Предыдущие тренеры" onClick={() => moveCarousel(-1)}>
+            ‹
+          </button>
+          <div className="carousel-window">
+            <div
+              ref={trackRef}
+              className={`carousel-track circular-track trainer-grid${moveDirection === 0 ? '' : ' is-moving'}`}
+              style={{
+                transform: `translateX(-${(moveDirection + 1) * slideOffset}px)`,
+              }}
+              onTransitionEnd={(event) => {
+                if (event.currentTarget === event.target) {
+                  normalizeLoop()
+                }
+              }}
+            >
+              {loopedTrainers.map((trainer, index) => (
+                <article key={`${trainer.name}-${index}`} className="trainer-card">
+                  <Image src={trainer.img} alt={trainer.name} sizes="(max-width: 620px) 78vw, (max-width: 950px) 44vw, 28vw" />
+                  <div>
+                    <h3>{trainer.name}</h3>
+                    <p>{trainer.role}</p>
+                    <button type="button" onClick={() => setSelectedTrainer(trainer)}>
+                      Подробнее
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
+          <button className="edge-carousel-button next" type="button" aria-label="Следующие тренеры" onClick={() => moveCarousel(1)}>
+            ›
+          </button>
         </div>
       </div>
 

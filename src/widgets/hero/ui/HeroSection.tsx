@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import { BookingButton } from '@/features/booking-session'
-import { images } from '@/shared/assets/images'
 
 export default function HeroSection() {
   return (
@@ -45,13 +43,27 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-visual">
-          <Image src={images.hero} alt="Тренировка Pilates Point" priority sizes="(max-width: 950px) 92vw, 520px" />
-          <div className="hero-note">
+        <aside className="hero-panel" aria-label="Форматы занятий">
+          <div className="hero-panel-top">
             <span>01</span>
             <p>Персональное внимание к технике на каждом занятии</p>
           </div>
-        </div>
+          <div className="hero-panel-list">
+            <div>
+              <strong>Pilates Mat</strong>
+              <span>мягкий старт и контроль корпуса</span>
+            </div>
+            <div>
+              <strong>Reformer</strong>
+              <span>оборудование для точной нагрузки</span>
+            </div>
+            <div>
+              <strong>Stretch & МФР</strong>
+              <span>мобильность, восстановление, лёгкость</span>
+            </div>
+          </div>
+          <a className="hero-panel-link" href="#booking">Первое занятие от 500 руб.</a>
+        </aside>
       </div>
     </>
   )

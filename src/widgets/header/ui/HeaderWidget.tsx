@@ -20,7 +20,7 @@ export default function HeaderWidget() {
   return (
     <header className="header container">
       <a className="brand" href="#">
-        <Image src={images.logo} alt="Pilates Point" priority sizes="180px" />
+        <Image src={images.logo} alt="Pilates Point" priority sizes="56px" />
       </a>
 
       <nav className={menuOpen ? 'open' : undefined}>
