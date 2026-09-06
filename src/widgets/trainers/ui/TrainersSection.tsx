@@ -1,62 +1,35 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { trainers } from '@/entities/trainer'
-import { CarouselControls } from '@/shared/ui/carousel'
 
 export default function TrainersSection() {
-  const trackRef = useRef<HTMLDivElement>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [visibleSlides, setVisibleSlides] = useState(3)
-  const [slideOffset, setSlideOffset] = useState(0)
-  const maxIndex = Math.max(0, trainers.length - visibleSlides)
-  const pagesCount = maxIndex + 1
+  const [selectedTrainer, setSelectedTrainer] = useState<(typeof trainers)[number] | null>(null)
+  const loopedTrainers = [...trainers, ...trainers]
 
   useEffect(() => {
-    const updateVisibleSlides = () => {
-      const track = trackRef.current
-      const firstCard = track?.querySelector<HTMLElement>('.trainer-card')
-
-      if (track && firstCard) {
-        const styles = window.getComputedStyle(track)
-        const gap = Number.parseFloat(styles.columnGap || styles.gap || '0')
-        setSlideOffset(firstCard.offsetWidth + gap)
-      }
-
-      if (window.innerWidth <= 620) {
-        setVisibleSlides(1)
-        return
-      }
-
-      if (window.innerWidth <= 950) {
-        setVisibleSlides(2)
-        return
-      }
-
-      setVisibleSlides(3)
+    if (!selectedTrainer) {
+      return
     }
 
-    updateVisibleSlides()
-    window.addEventListener('resize', updateVisibleSlides)
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedTrainer(null)
+      }
+    }
 
-    return () => window.removeEventListener('resize', updateVisibleSlides)
-  }, [])
+    document.body.classList.add('modal-open')
+    window.addEventListener('keydown', closeOnEscape)
 
-  useEffect(() => {
-    setActiveIndex((index) => Math.min(index, maxIndex))
-  }, [maxIndex])
-
-  const showPrev = () => {
-    setActiveIndex((index) => (index === 0 ? maxIndex : index - 1))
-  }
-
-  const showNext = () => {
-    setActiveIndex((index) => (index === maxIndex ? 0 : index + 1))
-  }
+    return () => {
+      document.body.classList.remove('modal-open')
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [selectedTrainer])
 
   return (
-    <section id="trainers" className="surface-section section-pad">
+    <section id="trainers" className="surface-section section-pad marquee-section">
       <div className="container">
         <div className="section-head">
           <div>
@@ -70,46 +43,65 @@ export default function TrainersSection() {
             </h2>
           </div>
           <div className="section-actions">
-            <a href="#trainers">Смотреть всех тренеров →</a>
-            <CarouselControls
-              activeIndex={activeIndex}
-              count={pagesCount}
-              label="Тренеры"
-              onNext={showNext}
-              onPrev={showPrev}
-              onSelect={(index) => setActiveIndex(Math.min(index, maxIndex))}
-            />
+            <a href="#booking">Записаться к тренеру →</a>
           </div>
         </div>
 
-        <div className="carousel-window">
-          <div
-            ref={trackRef}
-            className="carousel-track trainer-grid"
-            style={{ transform: `translateX(-${activeIndex * slideOffset}px)` }}
-          >
-            {trainers.map((trainer) => (
-              <article key={trainer.name} className="trainer-card">
+        <div className="marquee-window">
+          <div className="marquee-track trainer-grid reverse-marquee">
+            {loopedTrainers.map((trainer, index) => (
+              <article key={`${trainer.name}-${index}`} className="trainer-card">
                 <Image src={trainer.img} alt={trainer.name} sizes="(max-width: 620px) 78vw, (max-width: 950px) 44vw, 28vw" />
                 <div>
                   <h3>{trainer.name}</h3>
                   <p>{trainer.role}</p>
-                  <a href="#booking">Подробнее →</a>
+                  <button type="button" onClick={() => setSelectedTrainer(trainer)}>
+                    Подробнее
+                  </button>
                 </div>
               </article>
             ))}
           </div>
         </div>
-        <CarouselControls
-          activeIndex={activeIndex}
-          className="mobile-carousel-controls"
-          count={pagesCount}
-          label="Тренеры"
-          onNext={showNext}
-          onPrev={showPrev}
-          onSelect={(index) => setActiveIndex(Math.min(index, maxIndex))}
-        />
       </div>
+
+      {selectedTrainer && (
+        <div className="trainer-modal" role="dialog" aria-modal="true" aria-label={selectedTrainer.name}>
+          <button
+            className="modal-backdrop"
+            type="button"
+            aria-label="Закрыть превью"
+            onClick={() => setSelectedTrainer(null)}
+          />
+          <div className="trainer-preview">
+            <button
+              className="modal-close"
+              type="button"
+              aria-label="Закрыть"
+              onClick={() => setSelectedTrainer(null)}
+            >
+              ×
+            </button>
+            <Image src={selectedTrainer.img} alt={selectedTrainer.name} sizes="(max-width: 760px) 100vw, 420px" />
+            <div className="trainer-preview-copy">
+              <div className="eyebrow">
+                <span></span> тренер
+              </div>
+              <h3>{selectedTrainer.name}</h3>
+              <strong>{selectedTrainer.role}</strong>
+              <p>{selectedTrainer.description}</p>
+              <div className="trainer-tags">
+                {selectedTrainer.focus.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+              <a className="pill" href="#booking" onClick={() => setSelectedTrainer(null)}>
+                Записаться
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

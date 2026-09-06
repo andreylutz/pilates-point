@@ -1,15 +1,17 @@
-import hero from './images/hero.jpg'
-import class1 from './images/class-1.jpg'
-import class2 from './images/class-2.jpg'
-import class3 from './images/class-3.jpg'
-import class4 from './images/class-4.jpg'
-import trainer1 from './images/trainer-1.jpg'
-import trainer2 from './images/trainer-2.jpg'
-import trainer3 from './images/trainer-3.jpg'
-import trainer4 from './images/trainer-4.jpg'
+import hero from '../../images/DSC_1706.jpg'
+import class1 from '../../images/DSC_1714.jpg'
+import class2 from '../../images/DSC_1820.jpg'
+import class3 from '../../images/DSC_2121.jpg'
+import class4 from '../../images/IMG_7359.jpeg'
+import trainer1 from '../../images/DSC_2067.jpg'
+import trainer2 from '../../images/liza-trainer.jpg'
+import trainer3 from '../../images/katerina-trainer.jpg'
+import trainer4 from '../../images/DSC_2098.jpg'
 import footerDecor from './images/footer-decor.jpg'
+import logo from './images/logo.png'
 
 export const images = {
+  logo,
   hero,
   class1,
   class2,

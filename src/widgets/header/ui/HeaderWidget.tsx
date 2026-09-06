@@ -1,7 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { BookingButton } from '@/features/booking-session'
+import { images } from '@/shared/assets/images'
 
 const navigation = [
   { href: '#about', label: 'О студии' },
@@ -18,10 +20,7 @@ export default function HeaderWidget() {
   return (
     <header className="header container">
       <a className="brand" href="#">
-        <span className="brand-mark">◒</span>
-        <span>
-          Pilates<span>Point</span>
-        </span>
+        <Image src={images.logo} alt="Pilates Point" priority sizes="180px" />
       </a>
 
       <nav className={menuOpen ? 'open' : undefined}>
@@ -39,6 +38,7 @@ export default function HeaderWidget() {
         type="button"
         onClick={() => setMenuOpen((isOpen) => !isOpen)}
       >
+        <span></span>
         <span></span>
         <span></span>
       </button>
