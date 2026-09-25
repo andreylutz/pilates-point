@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { BookingButton } from "@/features/booking-session";
-import { images } from "@/shared/assets/images";
 
 export default function HeroSection() {
   return (
@@ -26,19 +24,6 @@ export default function HeroSection() {
           <a className="text-link text-link-light" href="#programs">
             Посмотреть направления <span aria-hidden="true">↗</span>
           </a>
-        </div>
-      </div>
-
-      <div className="hero-visual">
-        <Image
-          src={images.hero}
-          alt="Тренер Pilates Point во время занятия"
-          priority
-          sizes="(max-width: 700px) 100vw, 48vw"
-        />
-        <div className="hero-visual-caption">
-          <span>PILATES POINT</span>
-          <span>Осознанное движение начинается здесь</span>
         </div>
       </div>
 

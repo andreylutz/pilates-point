@@ -5,7 +5,7 @@ export default function TrainersSection() {
   return (
     <section id="trainers" className="trainers-section section-spacing">
       <div className="container">
-        <div className="section-intro section-intro-split">
+        <div className="section-intro section-intro-split" data-reveal>
           <div>
             <p className="eyebrow">03 / Люди</p>
             <h2>
@@ -21,7 +21,7 @@ export default function TrainersSection() {
         </div>
         <div className="trainer-grid">
           {trainers.slice(0, 3).map((trainer, index) => (
-            <article className="trainer-card" key={trainer.name}>
+            <article className="trainer-card" key={trainer.name} data-reveal>
               <div className="trainer-image">
                 <Image
                   src={trainer.img}

@@ -1,7 +1,7 @@
 export default function ContactsFooter() {
   return (
     <footer id="contacts" className="site-footer">
-      <div className="container footer-top">
+      <div className="container footer-top" data-reveal>
         <div>
           <span className="eyebrow">Контакты</span>
           <h2>

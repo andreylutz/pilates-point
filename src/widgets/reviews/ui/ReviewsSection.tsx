@@ -28,7 +28,7 @@ export default function ReviewsSection() {
   return (
     <section id="reviews" className="reviews-section section-spacing">
       <div className="container review-layout">
-        <div className="review-heading">
+        <div className="review-heading" data-reveal>
           <p className="eyebrow">04 / Отзывы</p>
           <h2>
             Слова, которые
@@ -37,11 +37,11 @@ export default function ReviewsSection() {
           </h2>
           <p>Самое ценное — видеть, как движение меняет жизнь к лучшему.</p>
         </div>
-        <div className="review-card" aria-live="polite">
+        <div className="review-card" aria-live="polite" data-reveal>
           <span className="review-quote" aria-hidden="true">
             “
           </span>
-          <blockquote>{reviews[active].text}</blockquote>
+          <blockquote key={active}>{reviews[active].text}</blockquote>
           <div className="review-card-bottom">
             <div>
               <strong>{reviews[active].author}</strong>

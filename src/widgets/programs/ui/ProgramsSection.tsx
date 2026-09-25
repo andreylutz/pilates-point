@@ -5,7 +5,7 @@ export default function ProgramsSection() {
   return (
     <section id="programs" className="programs-section section-spacing">
       <div className="container">
-        <div className="section-intro section-intro-split">
+        <div className="section-intro section-intro-split" data-reveal>
           <div>
             <p className="eyebrow">02 / Практики</p>
             <h2>
@@ -21,13 +21,21 @@ export default function ProgramsSection() {
         </div>
         <div className="program-grid">
           {programs.map((program, index) => (
-            <a className="program-card" href="#booking" key={program.title}>
+            <a
+              className="program-card"
+              href="#booking"
+              key={program.title}
+              data-reveal
+            >
               <div className="program-image">
                 <Image
                   src={program.img}
                   alt=""
                   sizes="(max-width: 700px) 100vw, 50vw"
                 />
+                <span className="program-image-label">
+                  0{index + 1} / Практика
+                </span>
               </div>
               <div className="program-info">
                 <span className="program-number">0{index + 1}</span>

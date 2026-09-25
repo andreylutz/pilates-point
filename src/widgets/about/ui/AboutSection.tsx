@@ -23,7 +23,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="about-section section-spacing">
       <div className="container">
-        <div className="section-intro">
+        <div className="section-intro" data-reveal>
           <p className="eyebrow">01 / Пространство</p>
           <h2>
             Не просто тренировка.
@@ -32,7 +32,7 @@ export default function AboutSection() {
           </h2>
         </div>
         <div className="about-layout">
-          <div className="about-photo">
+          <div className="about-photo" data-reveal="image">
             <Image
               src={images.class4}
               alt="Светлый зал студии Pilates Point"
@@ -40,7 +40,7 @@ export default function AboutSection() {
             />
             <span>Вдохните. Вы уже на месте.</span>
           </div>
-          <div className="about-content">
+          <div className="about-content" data-reveal>
             <p className="about-lead">
               Pilates Point — камерная студия, в которой движение становится
               способом почувствовать себя лучше.

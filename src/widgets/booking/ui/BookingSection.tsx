@@ -6,7 +6,7 @@ export default function BookingSection() {
   return (
     <section id="booking" className="booking-section">
       <div className="container booking-layout">
-        <div className="booking-copy">
+        <div className="booking-copy" data-reveal>
           <p className="eyebrow">Ваш первый шаг</p>
           <h2>
             Начните
@@ -23,7 +23,7 @@ export default function BookingSection() {
           />
           <span className="booking-price">Первое занятие — от 500 ₽</span>
         </div>
-        <div className="booking-image">
+        <div className="booking-image" data-reveal="image">
           <Image
             src={images.booking}
             alt="Занятие пилатесом в студии"
