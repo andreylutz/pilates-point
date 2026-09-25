@@ -1,6 +1,11 @@
 import { BookingButton } from "@/features/booking-session";
+import type { ReactNode } from "react";
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  children?: ReactNode;
+};
+
+export default function HeroSection({ children }: HeroSectionProps) {
   return (
     <div className="hero-content container">
       <div className="hero-copy">
@@ -26,6 +31,8 @@ export default function HeroSection() {
           </a>
         </div>
       </div>
+
+      {children ? <div className="hero-review-slot">{children}</div> : null}
 
       <div className="hero-bottom">
         <span>Сила в каждом движении</span>

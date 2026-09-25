@@ -113,7 +113,6 @@ blockquote {
   margin-bottom: 56px;
 }
 .section-intro h2,
-.review-heading h2,
 .booking-copy h2,
 .footer-top h2 {
   font-size: clamp(48px, 5.9vw, 96px);
@@ -122,7 +121,6 @@ blockquote {
   letter-spacing: -0.065em;
 }
 .section-intro h2 em,
-.review-heading h2 em,
 .booking-copy h2 em,
 .footer-top h2 em,
 .hero h1 em {
@@ -332,14 +330,14 @@ blockquote {
   z-index: 3;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: minmax(0, 1fr) auto auto;
   align-items: center;
 }
 .hero-copy {
   position: relative;
   z-index: 2;
   width: min(800px, 70%);
-  padding: 58px 0 65px;
+  padding: 42px 0 28px;
   animation: heroRise 0.9s both;
 }
 .hero-eyebrow {
@@ -389,6 +387,7 @@ blockquote {
   background: #315b39;
 }
 .hero-bottom {
+  grid-row: 3;
   grid-column: 1/-1;
   display: flex;
   justify-content: space-between;
@@ -696,90 +695,104 @@ blockquote {
   margin-top: 50px;
 }
 
-/* Voices */
-.reviews-section {
-  background: var(--cream);
+/* Voices — embedded in the first screen */
+.hero-review-slot {
+  grid-column: 1/-1;
+  grid-row: 2;
+  position: relative;
+  z-index: 3;
+  min-width: 0;
 }
-.review-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(60px, 9vw, 150px);
+.hero-reviews {
+  overflow: hidden;
+  padding: 14px 0 16px;
+  border-top: 1px solid var(--line);
+}
+.hero-reviews-heading {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 12px;
 }
-.review-heading .eyebrow {
-  margin-bottom: 28px;
+.hero-reviews .eyebrow {
+  margin: 0;
+  color: var(--forest);
 }
-.review-heading > p:last-child {
-  max-width: 330px;
-  margin-top: 30px;
+.hero-reviews-heading > p:last-child {
+  margin: 0;
   color: var(--muted);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.review-marquee {
+  overflow: hidden;
+  outline: none;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+.review-marquee-track {
+  width: max-content;
+  display: flex;
+  gap: 16px;
+  animation: reviewMarquee 46s linear infinite;
+  will-change: transform;
+}
+.review-marquee-set {
+  display: flex;
+  gap: 16px;
 }
 .review-card {
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(34px, 4vw, 70px);
-  background: var(--sage);
-  color: var(--on-sage);
-}
-.review-quote {
-  height: 80px;
-  font-family: Georgia, serif;
-  font-size: 130px;
-  line-height: 1;
-  color: var(--cream);
+  flex: 0 0 clamp(310px, 29vw, 440px);
+  min-height: 116px;
+  display: grid;
+  align-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  border: 1px solid rgba(31, 66, 41, 0.19);
+  border-radius: 12px;
+  background: rgba(241, 238, 224, 0.7);
+  box-shadow: 0 12px 30px rgba(31, 66, 41, 0.06);
+  color: var(--forest);
+  backdrop-filter: blur(12px);
 }
 .review-card blockquote {
-  max-width: 610px;
-  margin: 12px 0 35px;
-  font-size: clamp(22px, 2.2vw, 34px);
-  line-height: 1.42;
-  letter-spacing: -0.035em;
-  animation: quoteEnter 0.5s ease both;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
-.review-card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 20px;
-  border-top: 1px solid rgba(21, 50, 29, 0.35);
-  padding-top: 25px;
-}
-.review-card-bottom > div:first-child {
-  display: grid;
-  gap: 5px;
-}
-.review-card-bottom strong {
-  font-size: 14px;
-}
-.review-card-bottom span {
-  color: var(--on-sage);
-  font-size: 12px;
-}
-.review-controls {
+.review-card footer {
   display: flex;
   align-items: center;
-  gap: 15px;
-  white-space: nowrap;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid rgba(31, 66, 41, 0.14);
+  padding-top: 10px;
 }
-.review-controls button {
-  width: 38px;
-  height: 38px;
-  border: 1px solid rgba(21, 50, 29, 0.4);
-  border-radius: 50%;
-  background: transparent;
-  color: var(--forest);
-  font-size: 18px;
-  transition:
-    background 0.25s,
-    color 0.25s;
+.review-card strong {
+  font-size: 11px;
 }
-.review-controls button:hover {
-  background: var(--forest);
-  color: var(--cream);
+.review-card footer span {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.review-marquee:hover .review-marquee-track,
+.review-marquee:focus-within .review-marquee-track,
+.review-marquee:focus .review-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes reviewMarquee {
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
 }
 
 /* Invitation and footer */
@@ -1009,11 +1022,11 @@ blockquote {
     min-height: 0;
     max-height: none;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
   }
   .hero-copy {
     width: min(680px, 85%);
-    padding: 95px 0 115px;
+    padding: 64px 0 36px;
   }
   .hero h1 {
     font-size: clamp(58px, 8vw, 86px);
@@ -1033,13 +1046,6 @@ blockquote {
   }
   .about-content {
     padding: 0;
-  }
-  .review-layout {
-    grid-template-columns: 1fr;
-    gap: 42px;
-  }
-  .review-card {
-    min-height: 380px;
   }
   .trainer-card:nth-child(2) {
     padding-top: 40px;
@@ -1075,7 +1081,6 @@ blockquote {
     margin-bottom: 34px;
   }
   .section-intro h2,
-  .review-heading h2,
   .footer-top h2 {
     font-size: clamp(43px, 11vw, 64px);
   }
@@ -1110,7 +1115,7 @@ blockquote {
   }
   .hero-copy {
     width: 100%;
-    padding: 73px 0 55px;
+    padding: 54px 0 30px;
   }
   .hero-eyebrow {
     margin-bottom: 23px;
@@ -1129,8 +1134,25 @@ blockquote {
     gap: 23px;
     margin-top: 30px;
   }
-  .hero-background-image {
-    object-position: 24% 38%;
+  .hero-reviews {
+    padding: 12px 0 14px;
+  }
+  .hero-reviews-heading > p:last-child {
+    max-width: 180px;
+    font-size: 10px;
+    text-align: right;
+  }
+  .review-marquee-track,
+  .review-marquee-set {
+    gap: 12px;
+  }
+  .review-card {
+    flex-basis: min(82vw, 350px);
+    min-height: 122px;
+    padding: 14px 15px;
+  }
+  .review-card blockquote {
+    font-size: 12px;
   }
   .hero-bottom {
     width: 100%;
@@ -1215,7 +1237,6 @@ blockquote {
     width: 100%;
   }
   .section-intro h2,
-  .review-heading h2,
   .footer-top h2 {
     font-size: 43px;
   }
@@ -1242,20 +1263,11 @@ blockquote {
   .trainer-image {
     height: 440px;
   }
-  .review-card {
-    min-height: 0;
-    padding: 26px;
-  }
-  .review-quote {
-    height: 60px;
-    font-size: 100px;
-  }
-  .review-card blockquote {
-    font-size: 22px;
-  }
-  .review-card-bottom {
+  .hero-reviews-heading {
     align-items: start;
-    flex-direction: column;
+  }
+  .hero-reviews-heading > p:last-child {
+    max-width: 145px;
   }
   .booking-copy h2 {
     font-size: 54px;

@@ -33,13 +33,14 @@ export default function HomePage() {
         </video>
         <HeaderWidget />
 
-        <HeroSection />
+        <HeroSection>
+          <ReviewsSection />
+        </HeroSection>
       </section>
 
       <AboutSection />
       <ProgramsSection />
       <TrainersSection />
-      <ReviewsSection />
       <BookingSection />
       <ContactsFooter />
     </main>
