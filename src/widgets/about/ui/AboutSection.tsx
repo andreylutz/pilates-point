@@ -20,19 +20,18 @@ export default function AboutSection() {
               Студия расположена в спокойном районе, рядом с лесом, что усиливает ощущение уюта,
               уединения и единения с природой.
             </p>
-            <div className="leaf">❧</div>
           </div>
           <div className="feature-list">
             <article>
-              <div className="feature-icon">✺</div>
+              <div className="feature-icon">01</div>
               <strong>Тренировки для любого уровня подготовки</strong>
             </article>
             <article>
-              <div className="feature-icon">☷</div>
+              <div className="feature-icon">02</div>
               <strong>Индивидуальный план тренировок по результатам тестирования</strong>
             </article>
             <article>
-              <div className="feature-icon">♙</div>
+              <div className="feature-icon">03</div>
               <strong>Дыхательные практики и медитации для внутреннего баланса</strong>
             </article>
           </div>

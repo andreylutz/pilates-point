@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description:
     'Pilates Point - камерная студия пилатеса, йоги и растяжки в Перми. Тренировки в малых группах, Reformer, Pilates Mat, МФР и занятия для здоровья спины.',
+  icons: {
+    icon: '/brand/pilates-point-mark-dark.svg',
+  },
   keywords: [
     'пилатес Пермь',
     'студия пилатеса',

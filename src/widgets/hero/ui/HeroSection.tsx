@@ -27,7 +27,7 @@ export default function HeroSection() {
             <BookingButton className="pill hero-button" href="#booking" label="Записаться" />
             <a className="ghost-link" href="#programs">Смотреть направления</a>
           </div>
-          <div className="hero-stats" aria-label="Преимущества студии">
+          <div className="hero-stats" aria-label="Ключевые цифры студии">
             <div>
               <strong>5</strong>
               <span>человек в группе</span>
@@ -43,26 +43,22 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <aside className="hero-panel" aria-label="Форматы занятий">
+        <aside className="hero-panel" aria-label="Преимущества первого занятия">
           <div className="hero-panel-top">
-            <span>01</span>
-            <p>Персональное внимание к технике на каждом занятии</p>
+            <span>500 ₽</span>
+            <p>Первое занятие: знакомимся с движением и подбираем комфортную нагрузку</p>
           </div>
           <div className="hero-panel-list">
             <div>
-              <strong>Pilates Mat</strong>
-              <span>мягкий старт и контроль корпуса</span>
+              <strong>До 5 человек</strong>
+              <span>в группе — тренер видит вашу технику</span>
             </div>
             <div>
-              <strong>Reformer</strong>
-              <span>оборудование для точной нагрузки</span>
-            </div>
-            <div>
-              <strong>Stretch & МФР</strong>
-              <span>мобильность, восстановление, лёгкость</span>
+              <strong>Без подготовки</strong>
+              <span>начнём с вашего текущего уровня</span>
             </div>
           </div>
-          <a className="hero-panel-link" href="#booking">Первое занятие от 500 руб.</a>
+          <a className="hero-panel-link" href="#booking">Выбрать первое занятие <span aria-hidden="true">→</span></a>
         </aside>
       </div>
     </>

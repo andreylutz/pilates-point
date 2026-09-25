@@ -7,7 +7,6 @@ const navigation = [
   { href: '#about', label: 'О студии' },
   { href: '#programs', label: 'Направления' },
   { href: '#trainers', label: 'Тренеры' },
-  { href: '#programs', label: 'Цены' },
   { href: '#reviews', label: 'Отзывы' },
   { href: '#contacts', label: 'Контакты' },
 ]
@@ -21,7 +20,7 @@ export default function HeaderWidget() {
         <img src="/brand/pilates-point-mark-dark.svg" alt="" />
       </a>
 
-      <nav className={menuOpen ? 'open' : undefined}>
+      <nav className={menuOpen ? 'open' : undefined} aria-label="Основная навигация">
         {navigation.map((item) => (
           <a key={`${item.href}-${item.label}`} href={item.href} onClick={() => setMenuOpen(false)}>
             {item.label}
@@ -32,7 +31,8 @@ export default function HeaderWidget() {
       <BookingButton className="pill desktop-book" href="#booking" label="Записаться" />
       <button
         className="menu-btn"
-        aria-label="Открыть меню"
+        aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+        aria-expanded={menuOpen}
         type="button"
         onClick={() => setMenuOpen((isOpen) => !isOpen)}
       >

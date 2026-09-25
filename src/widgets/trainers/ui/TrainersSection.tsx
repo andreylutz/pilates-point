@@ -117,7 +117,12 @@ export default function TrainersSection() {
             >
               {loopedTrainers.map((trainer, index) => (
                 <article key={`${trainer.name}-${index}`} className="trainer-card">
-                  <Image src={trainer.img} alt={trainer.name} sizes="(max-width: 620px) 78vw, (max-width: 950px) 44vw, 28vw" />
+                  <Image
+                    src={trainer.img}
+                    alt={trainer.name}
+                    loading={index >= 1 && index <= 3 ? 'eager' : 'lazy'}
+                    sizes="(max-width: 620px) 78vw, (max-width: 950px) 44vw, 28vw"
+                  />
                   <div>
                     <h3>{trainer.name}</h3>
                     <p>{trainer.role}</p>
