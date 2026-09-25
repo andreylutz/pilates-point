@@ -22,7 +22,7 @@ export default function CarouselControls({
   return (
     <div className={className ? `carousel-controls ${className}` : 'carousel-controls'}>
       <button className="carousel-arrow" type="button" aria-label={`${label}: назад`} onClick={onPrev}>
-        ‹
+        <span className="arrow-icon arrow-icon-prev" aria-hidden="true" />
       </button>
       <div className="carousel-dots" aria-label={label}>
         {Array.from({ length: count }).map((_, index) => (
@@ -37,7 +37,7 @@ export default function CarouselControls({
         ))}
       </div>
       <button className="carousel-arrow" type="button" aria-label={`${label}: вперёд`} onClick={onNext}>
-        ›
+        <span className="arrow-icon arrow-icon-next" aria-hidden="true" />
       </button>
     </div>
   )

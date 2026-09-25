@@ -100,7 +100,7 @@ export default function TrainersSection() {
 
         <div className="edge-carousel">
           <button className="edge-carousel-button prev" type="button" aria-label="Предыдущие тренеры" onClick={() => moveCarousel(-1)}>
-            ‹
+            <span className="arrow-icon arrow-icon-prev" aria-hidden="true" />
           </button>
           <div className="carousel-window">
             <div
@@ -130,7 +130,7 @@ export default function TrainersSection() {
             </div>
           </div>
           <button className="edge-carousel-button next" type="button" aria-label="Следующие тренеры" onClick={() => moveCarousel(1)}>
-            ›
+            <span className="arrow-icon arrow-icon-next" aria-hidden="true" />
           </button>
         </div>
       </div>

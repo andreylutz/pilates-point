@@ -78,7 +78,7 @@ export default function ProgramsSection() {
         </div>
         <div className="edge-carousel">
           <button className="edge-carousel-button prev" type="button" aria-label="Предыдущие направления" onClick={() => moveCarousel(-1)}>
-            ‹
+            <span className="arrow-icon arrow-icon-prev" aria-hidden="true" />
           </button>
           <div className="carousel-window">
             <div
@@ -113,7 +113,7 @@ export default function ProgramsSection() {
             </div>
           </div>
           <button className="edge-carousel-button next" type="button" aria-label="Следующие направления" onClick={() => moveCarousel(1)}>
-            ›
+            <span className="arrow-icon arrow-icon-next" aria-hidden="true" />
           </button>
         </div>
       </div>

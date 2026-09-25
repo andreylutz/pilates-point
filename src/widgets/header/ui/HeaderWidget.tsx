@@ -1,9 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import { useState } from 'react'
 import { BookingButton } from '@/features/booking-session'
-import { images } from '@/shared/assets/images'
 
 const navigation = [
   { href: '#about', label: 'О студии' },
@@ -19,8 +17,8 @@ export default function HeaderWidget() {
 
   return (
     <header className="header container">
-      <a className="brand" href="#">
-        <Image src={images.logo} alt="Pilates Point" priority sizes="56px" />
+      <a className="brand" href="#" aria-label="Pilates Point — место, где начинается пилатес">
+        <img src="/brand/pilates-point-mark-dark.svg" alt="" />
       </a>
 
       <nav className={menuOpen ? 'open' : undefined}>

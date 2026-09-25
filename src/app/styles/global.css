@@ -1,25 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600&display=swap');
+@font-face{
+  font-family:"Ubuntu";
+  src:url("/fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Ubuntu";
+  src:url("/fonts/Ubuntu-Medium.ttf") format("truetype");
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Ubuntu";
+  src:url("/fonts/Ubuntu-Bold.ttf") format("truetype");
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Ubuntu";
+  src:url("/fonts/Ubuntu-Italic.ttf") format("truetype");
+  font-weight:400;
+  font-style:italic;
+  font-display:swap;
+}
 
 :root{
-  --ink:#1b3c29;
-  --green:#5f7d5a;
-  --green-dark:#4f6c4c;
-  --muted:#67736a;
-  --paper:#fbf8f3;
-  --surface:#fffdf9;
-  --surface-soft:#f5f0e8;
-  --line:#e7e0d7;
-  --shadow:0 24px 70px rgba(65,74,61,.08);
+  --ink:#1F4229;
+  --green:#89A081;
+  --green-dark:#1F4229;
+  --muted:#496252;
+  --paper:#F1EEE0;
+  --canvas:#F2F4EE;
+  --surface:#F1EEE0;
+  --surface-soft:#F1EEE0;
+  --line:rgba(31,66,41,.18);
+  --shadow:0 24px 70px rgba(31,66,41,.1);
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  background:
-    linear-gradient(180deg,#fcfaf6 0%,#f8f3eb 44%,#fbf8f3 100%);
+  background:linear-gradient(180deg,var(--canvas) 0%,#E9EDE6 44%,var(--canvas) 100%);
   color:var(--ink);
-  font-family:Inter,Arial,sans-serif;
+  font-family:"Ubuntu",Arial,sans-serif;
   text-rendering:geometricPrecision;
 }
 body.modal-open{overflow:hidden}
@@ -33,7 +60,7 @@ button{color:inherit}
   position:relative;
   overflow:hidden;
   background:
-    linear-gradient(115deg,rgba(251,248,243,.96) 0%,rgba(251,248,243,.88) 42%,rgba(251,248,243,.48) 100%);
+    linear-gradient(115deg,rgba(242,244,238,.84) 0%,rgba(242,244,238,.64) 42%,rgba(242,244,238,.18) 100%);
 }
 .hero::before{
   content:"";
@@ -41,8 +68,8 @@ button{color:inherit}
   inset:0;
   z-index:1;
   background:
-    linear-gradient(90deg,rgba(251,248,243,.98) 0%,rgba(251,248,243,.88) 52%,rgba(251,248,243,.4) 100%),
-    linear-gradient(0deg,rgba(251,248,243,.96) 0%,rgba(251,248,243,.5) 38%,rgba(251,248,243,.16) 100%);
+    linear-gradient(90deg,rgba(242,244,238,.9) 0%,rgba(242,244,238,.7) 52%,rgba(242,244,238,.16) 100%),
+    linear-gradient(0deg,rgba(242,244,238,.82) 0%,rgba(242,244,238,.3) 38%,rgba(242,244,238,.08) 100%);
   pointer-events:none;
 }
 .hero::after{
@@ -63,8 +90,8 @@ button{color:inherit}
   z-index:0;
   object-fit:cover;
   object-position:center;
-  filter:grayscale(1) contrast(.92) brightness(1.14);
-  opacity:.28;
+  filter:grayscale(.35) contrast(1) brightness(.92);
+  opacity:.62;
 }
 .hero .container{
   width:min(1320px,calc(100% - 96px));
@@ -72,22 +99,24 @@ button{color:inherit}
 .header{
   height:104px;
   display:grid;
-  grid-template-columns:auto 1fr auto auto;
+  grid-template-columns:minmax(188px,1fr) auto minmax(188px,1fr);
   align-items:center;
-  gap:26px;
+  gap:32px;
   position:relative;
   z-index:20;
 }
 .brand{
   display:flex;
   align-items:center;
-  width:42px;
-  height:56px;
+  justify-self:end;
+  width:80px;
+  height:80px;
 }
 .brand img{
-  width:auto;
-  height:100%;
+  width:100%;
+  height:auto;
   display:block;
+  object-fit:cover;
 }
 nav{
   display:flex;
@@ -235,18 +264,18 @@ h1,h2,h3,p{margin-top:0}
 h1{
   max-width:860px;
   margin:0 0 34px;
-  color:#163221;
-  font-family:Manrope,sans-serif;
+  color:var(--ink);
+  font-family:"Ubuntu",Arial,sans-serif;
   font-size:132px;
-  font-weight:500;
+  font-weight:700;
   line-height:.82;
   letter-spacing:0;
 }
 h2{
   color:var(--ink);
-  font-family:Manrope,sans-serif;
+  font-family:"Ubuntu",Arial,sans-serif;
   font-size:39px;
-  font-weight:400;
+  font-weight:700;
   line-height:1.02;
   letter-spacing:0;
 }
@@ -298,8 +327,8 @@ h2{
   backdrop-filter:blur(12px);
 }
 .hero-stats strong{
-  color:#163221;
-  font-family:"Cormorant Garamond",serif;
+  color:var(--ink);
+  font-family:"Ubuntu",Arial,sans-serif;
   font-size:34px;
   font-weight:500;
   line-height:1;
@@ -327,7 +356,7 @@ h2{
 }
 .hero-panel-top span{
   color:var(--green-dark);
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Ubuntu",Arial,sans-serif;
   font-size:42px;
   line-height:1;
 }
@@ -372,14 +401,14 @@ h2{
   margin:0;
   border-top:1px solid rgba(231,224,215,.84);
   border-bottom:1px solid rgba(231,224,215,.84);
-  background:rgba(255,253,249,.72);
+  background:rgba(241,238,224,.72);
   overflow:hidden;
 }
 .soft-section{
   margin:0;
   border-top:1px solid rgba(231,224,215,.74);
   border-bottom:1px solid rgba(231,224,215,.74);
-  background:linear-gradient(180deg,rgba(255,253,249,.78),rgba(245,240,232,.56));
+  background:linear-gradient(180deg,rgba(242,244,238,.95),rgba(137,160,129,.16));
 }
 #about{
   padding:58px 0 66px;
@@ -387,7 +416,7 @@ h2{
 }
 .about-grid{
   display:grid;
-  grid-template-columns:32% 68%;
+  grid-template-columns:minmax(0,32fr) minmax(0,68fr);
   gap:52px;
   align-items:center;
 }
@@ -485,7 +514,7 @@ h2{
 }
 .edge-carousel-button{
   width:56px;
-  height:88px;
+  height:56px;
   position:absolute;
   top:50%;
   z-index:6;
@@ -497,8 +526,6 @@ h2{
   box-shadow:0 18px 42px rgba(52,65,50,.12);
   color:#294432;
   cursor:pointer;
-  font-size:42px;
-  line-height:1;
   transform:translateY(-50%);
   transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;
 }
@@ -522,6 +549,16 @@ h2{
 .edge-carousel-button.next:focus-visible{
   transform:translate(4px,-50%);
 }
+.arrow-icon{
+  width:13px;
+  height:13px;
+  position:relative;
+  display:block;
+  border-top:2px solid currentColor;
+  border-right:2px solid currentColor;
+}
+.arrow-icon-prev{left:1px;transform:rotate(-135deg)}
+.arrow-icon-next{left:-1px;transform:rotate(45deg)}
 .card-grid .program-card{
   flex:0 0 calc((100% - 44px)/3);
 }
@@ -679,8 +716,8 @@ h2{
 }
 .trainer-preview-copy h3{
   margin-bottom:10px;
-  color:#163221;
-  font-family:"Cormorant Garamond",serif;
+  color:var(--ink);
+  font-family:"Ubuntu",Arial,sans-serif;
   font-size:52px;
   font-weight:500;
   line-height:.95;
@@ -752,8 +789,6 @@ h2{
   box-shadow:0 12px 26px rgba(63,70,58,.08);
   color:#526a55;
   cursor:pointer;
-  font-size:28px;
-  line-height:1;
   transition:transform .22s ease,background .22s ease,border-color .22s ease;
 }
 .carousel-arrow:hover{
@@ -975,6 +1010,7 @@ h2{
   .container{width:min(100% - 38px,1180px)}
   .hero .container{width:min(100% - 38px,1180px)}
   .header{grid-template-columns:1fr auto auto}
+  .brand{justify-self:start}
   nav{
     display:none;
     position:absolute;
@@ -1014,7 +1050,7 @@ h2{
   .edge-carousel{padding:0 54px}
   .edge-carousel-button{
     width:48px;
-    height:78px;
+    height:48px;
     font-size:36px;
   }
   .card-grid .program-card,
@@ -1054,7 +1090,7 @@ h2{
   .hero .container{width:min(100% - 28px,1180px)}
   .hero{min-height:100svh}
   .header{height:74px}
-  .brand{width:36px;height:48px}
+  .brand{width:54px;height:54px}
   h1{font-size:56px}
   h2{font-size:31px}
   .hero-copy>p{font-size:15px}
@@ -1106,7 +1142,7 @@ h2{
   }
   .edge-carousel-button{
     width:42px;
-    height:68px;
+    height:42px;
     background:rgba(255,253,249,.9);
     font-size:32px;
   }

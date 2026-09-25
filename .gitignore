@@ -27,3 +27,8 @@ next-env.d.ts
 .DS_Store
 .idea/
 .vscode/
+
+# Source brand archives; the web-ready files live in public/brand and public/fonts.
+гайдбук-20260925T153905Z-1-001/
+логотипы -20260925T153806Z-1-001/
+шрифты-20260925T153717Z-1-001/

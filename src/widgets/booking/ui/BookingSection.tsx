@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { BookingButton } from '@/features/booking-session'
 import { images } from '@/shared/assets/images'
 
 export default function BookingSection() {
@@ -15,9 +16,11 @@ export default function BookingSection() {
           </h2>
           <p>Мы подберём направление и время, которые подойдут именно вам.</p>
         </div>
-        <button className="pill booking-button" type="button">
-          Записаться на занятие <span>›</span>
-        </button>
+        <BookingButton
+          className="pill booking-button"
+          href="#contacts"
+          label="Записаться на занятие"
+        />
         <Image src={images.footerDecor} alt="" sizes="260px" />
       </div>
     </section>
