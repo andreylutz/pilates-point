@@ -17,13 +17,13 @@ export default function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#fbf8f3',
-          color: '#183c2b',
+          background: '#F1EEE0',
+          color: '#1F4229',
           padding: '72px',
           fontFamily: 'Arial',
         }}
       >
-        <div style={{ fontSize: 38, color: '#657f57' }}>Pilates Point</div>
+        <div style={{ fontSize: 38, color: '#1F4229' }}>Pilates Point</div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div
             style={{
@@ -37,13 +37,13 @@ export default function Image() {
             <span>Студия пилатеса</span>
             <span>в Перми</span>
           </div>
-          <div style={{ marginTop: 32, fontSize: 34, color: '#526d49' }}>
+          <div style={{ marginTop: 32, fontSize: 34, color: '#1F4229' }}>
             Pilates Reformer, Mat, МФР, Stretch и йога для спины
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 28, fontSize: 28, color: '#2e3a33' }}>
-          <span>ул. Петропавловская, 17</span>
-          <span>+7 (999) 128-45-67</span>
+        <div style={{ display: 'flex', gap: 28, fontSize: 28, color: '#1F4229' }}>
+          <span>ул. Докучаева, 23</span>
+          <span>+7 (919) 443-00-23</span>
         </div>
       </div>
     ),

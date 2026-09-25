@@ -5,12 +5,12 @@ export const businessJsonLd = {
   description:
     'Камерная студия пилатеса, йоги и растяжки в Перми с тренировками в малых группах.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://pilates-point.ru',
-  telephone: '+7 999 128-45-67',
+  telephone: '+7 919 443-00-23',
   priceRange: 'от 500 RUB',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Пермь',
-    streetAddress: 'ул. Петропавловская, 17',
+    streetAddress: 'ул. Докучаева, 23',
     addressCountry: 'RU',
   },
   openingHoursSpecification: [

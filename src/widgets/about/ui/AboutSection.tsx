@@ -1,42 +1,70 @@
+import Image from "next/image";
+import { images } from "@/shared/assets/images";
+
+const advantages = [
+  {
+    number: "01",
+    title: "Внимание к вам",
+    text: "В группе до пяти человек тренер успевает заметить нюансы движения и подсказать именно вам.",
+  },
+  {
+    number: "02",
+    title: "Комфортный старт",
+    text: "Можно прийти без подготовки. Мы поможем выбрать нагрузку под ваш опыт и самочувствие.",
+  },
+  {
+    number: "03",
+    title: "Место для себя",
+    text: "Здесь можно замедлиться, услышать тело и выйти с занятия с приятным ощущением опоры.",
+  },
+];
+
 export default function AboutSection() {
   return (
-    <section id="about" className="soft-section">
+    <section id="about" className="about-section section-spacing">
       <div className="container">
-        <div className="eyebrow">
-          <span></span> почему мы?
+        <div className="section-intro">
+          <p className="eyebrow">01 / Пространство</p>
+          <h2>
+            Не просто тренировка.
+            <br />
+            <em>Время для себя.</em>
+          </h2>
         </div>
-        <div className="about-grid">
-          <div className="about-copy">
-            <h2>
-              БОЛЬШЕ,
-              <br />
-              ЧЕМ ПИЛАТЕС
-            </h2>
-            <p>
-              PilatesPoint — это не просто студия пилатеса, а пространство для встречи с собой.
-              Здесь движение и дыхание помогают найти баланс между телом и разумом.
-            </p>
-            <p>
-              Студия расположена в спокойном районе, рядом с лесом, что усиливает ощущение уюта,
-              уединения и единения с природой.
-            </p>
+        <div className="about-layout">
+          <div className="about-photo">
+            <Image
+              src={images.class4}
+              alt="Светлый зал студии Pilates Point"
+              sizes="(max-width: 800px) 100vw, 48vw"
+            />
+            <span>Вдохните. Вы уже на месте.</span>
           </div>
-          <div className="feature-list">
-            <article>
-              <div className="feature-icon">01</div>
-              <strong>Тренировки для любого уровня подготовки</strong>
-            </article>
-            <article>
-              <div className="feature-icon">02</div>
-              <strong>Индивидуальный план тренировок по результатам тестирования</strong>
-            </article>
-            <article>
-              <div className="feature-icon">03</div>
-              <strong>Дыхательные практики и медитации для внутреннего баланса</strong>
-            </article>
+          <div className="about-content">
+            <p className="about-lead">
+              Pilates Point — камерная студия, в которой движение становится
+              способом почувствовать себя лучше.
+            </p>
+            <p className="about-body">
+              Мы соединяем точную технику, внимательное сопровождение и
+              спокойную атмосферу. Каждый приходит со своей целью — и находит
+              подходящий ритм.
+            </p>
+            <div className="advantage-list">
+              {advantages.map((item) => (
+                <div className="advantage" key={item.number}>
+                  <span>{item.number}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                  <span aria-hidden="true">↗</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
